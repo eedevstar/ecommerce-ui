@@ -20,6 +20,7 @@ export type TPhoto = {
   category: string;
   price: number;
   currency: string;
+  dimmentions?: TDimmention | null;
   image: TImage;
   bestseller: boolean;
   featured: boolean;

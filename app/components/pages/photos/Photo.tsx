@@ -19,7 +19,7 @@ type PhotoProps = {
 
 export const Photo = ({photo}: PhotoProps) => {
   return (
-    <Grid item sm={4} xs={12}>
+    <>
       <Box width={"100%"} height={398} position="relative" className="photo-box" sx={{"&:hover .add-cart": { display: "block"} }}>
         <Image src={photo.image.src} alt={photo.image.alt} layout="fill" />
         {
@@ -35,8 +35,8 @@ export const Photo = ({photo}: PhotoProps) => {
         </Box>
       </Box>
       <Typography variant="h5" color="text.secondary" mt={1}>{camelize(photo.category)}</Typography>
-      <Typography variant="h3">{photo.name}</Typography>
-      <Typography variant="h5" color="text.secondary" fontWeight={400}>{`${photo.price}`}</Typography>
-    </Grid>
+      <Typography variant="h3" sx={{margin: {sm: 0, xs: "12px 0"}}}>{photo.name}</Typography>
+      <Typography variant="h5" color="text.secondary" fontWeight={400}>{`$${photo.price}`}</Typography>
+    </>
   )
 }

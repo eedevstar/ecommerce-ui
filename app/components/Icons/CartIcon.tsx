@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
 type CartIconProps = {
-  width?: number,
-  height?: number,
+  width?: number | string,
+  height?: number | string,
 };
 
 export const CartIcon = ({

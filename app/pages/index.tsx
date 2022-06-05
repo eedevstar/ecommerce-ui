@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   return (
     <Default>
       <FeaturedPhoto />
-      <Divider sx={{borderBottomWidth:4, margin: "65px 0"}} />
+      <Divider sx={{borderBottomWidth:4, margin: {sm: "65px 0", xs: "49px 0 59px"}}} />
       <Photos />
     </Default>
     

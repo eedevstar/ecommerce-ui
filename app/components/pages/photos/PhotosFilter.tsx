@@ -9,64 +9,47 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { FeaturedPhoto } from "@/components/pages/feature";
 import { PhotosSort } from "./PhotosSort";
+import { PhotosFilterCategories, PhotosFilterPriceRanges } from "@/utils";
 
-export const PhotosFilter = () => {
-  const filterCategories = [
-    {
-      value: "people",
-      label: "People",
-    },
-    {
-      value: "premium",
-      label: "Premium",
-    },
-    {
-      value: "pets",
-      label: "Pets",
-    },
-    {
-      value: "food",
-      label: "Food",
-    },
-    {
-      value: "landmarks",
-      label: "Landmarks",
-    },
-    {
-      value: "cities",
-      label: "Cities",
-    },
-    {
-      value: "nature",
-      label: "Nature",
-    },
-  ];
+type PhotosFilterProps = {
+  filterCategories: (categories: string[])=>void;
+  filterRanges: (ranges: string[])=>void;
+}
 
-  const filterPriceRanges = [
-    {
-      value: "0",
-      label: "Lower than $20",
-    },
-    {
-      value: "1",
-      label: "$20 - $100",
-    },
-    {
-      value: "2",
-      label: "$100 - $200",
-    },
-    {
-      value: "3",
-      label: "More than $200",
-    },
-  ]
+export const PhotosFilter = ({filterCategories, filterRanges}: PhotosFilterProps) => {
+  const [categories, setCategories] = useState<string[]>([]);
+  const [ranges, setRanges] = useState<string[]>([]);
+
+  const handleFilterChange = (isCategory: boolean, key: string, value: boolean) => {
+    let arr: string[] = isCategory ? [...categories] : [...ranges];
+    
+    if(value && !arr.includes(key)) {
+      arr.push(key);
+    } else if(!value && arr.includes(key)) {
+      arr.splice(arr.findIndex((item) => item == key), 1);
+    }
+
+    if(isCategory) {
+      setCategories(arr);
+      filterCategories(arr);
+    } else {
+      setRanges(arr);
+      filterRanges(arr);
+    }
+  }
+
   return (
-    <Grid item sm={3}>
+    <>
       <Typography variant="h5" mb={4}>Category</Typography>
       <FormGroup>
         {
-          filterCategories.map((item, idx) => (
-            <FormControlLabel key={idx} control={<Checkbox checkedIcon={<CheckBoxOutlinedIcon />} />} sx={{marginBottom: "23px"}} label={item.label} />
+          PhotosFilterCategories.map((item, idx) => (
+            <FormControlLabel 
+              key={idx} 
+              control={<Checkbox onChange={(e)=>handleFilterChange(true, item.value, e.target.checked)} 
+              checkedIcon={<CheckBoxOutlinedIcon />} />} 
+              sx={{marginBottom: "23px"}} 
+              label={item.label} />
           ))
         }
       </FormGroup>
@@ -74,11 +57,16 @@ export const PhotosFilter = () => {
       <Typography variant="h5" my={4}>Price range</Typography>
       <FormGroup>
         {
-          filterPriceRanges.map((item, idx) => (
-            <FormControlLabel key={idx} control={<Checkbox checkedIcon={<CheckBoxOutlinedIcon />} />} sx={{marginBottom: "23px"}} label={item.label} />
+          PhotosFilterPriceRanges.map((item, idx) => (
+            <FormControlLabel 
+              key={idx} 
+              control={<Checkbox onChange={(e)=>handleFilterChange(false, item.value, e.target.checked)} 
+              checkedIcon={<CheckBoxOutlinedIcon />} />} 
+              sx={{marginBottom: "23px"}} 
+              label={item.label} />
           ))
         }
       </FormGroup>
-    </Grid>
+    </>
   )
 }

@@ -5,7 +5,8 @@ import Toolbar from "@mui/material/Toolbar";
 import { CartIcon, MarkIcon, CloseIcon } from "../Icons";
 import { Box, Badge, Container, Divider, Grid, Paper, Typography, useTheme, alpha, Button } from "@mui/material";
 import Image from "next/image";
-import { ShoppingCart } from "./ShoppingCart";
+import { ShoppingCart } from "../pages/photos/ShoppingCart";
+import { ShoppingCartMobile } from "../pages/photos/ShoppingCartMobile";
 
 type DefaultLayoutProps = {
   children: React.ReactNode;
@@ -27,10 +28,17 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
           <Container maxWidth="lg">
             <Grid container alignItems="center" height={{sm: height_sm, xs: height_xs}}>
               <Grid item xs={8} pl={{xs: 4, sm: 0}}>
-                <MarkIcon />
+                <Box pt={2}>
+                  <MarkIcon />
+                </Box>
               </Grid>
               <Grid item xs={4} textAlign="right" sx={{position: "relative"}} pr={{xs: 3, sm: 0}}>
-                <ShoppingCart />
+                <Box display={{sm: "block", xs: "none"}}>
+                  <ShoppingCart />
+                </Box>
+                <Box display={{sm: "none", xs: "block"}}>
+                  <ShoppingCartMobile />
+                </Box>
               </Grid>
             </Grid>
             <Divider sx={{borderBottomWidth:4}} />
@@ -38,7 +46,7 @@ export const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
         </Toolbar>
       </AppBar>
       <Container maxWidth="lg">
-        <Box paddingTop={{sm: "62px", xs: "32px"}} px={{sm: 0, xs: "14px"}}>
+        <Box pt={{sm: "62px", xs: "32px"}} px={{sm: 0, xs: "14px"}} pb={5}>
           {children}
         </Box>
       </Container>

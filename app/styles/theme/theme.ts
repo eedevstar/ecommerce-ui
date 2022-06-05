@@ -31,6 +31,11 @@ export const createTheme = (mode: PaletteMode) => {
           root: {
             fontFamily: Archivo,
           },
+          h2: {
+            fontWeight: Bold,
+            fontSize: 34,
+            lineHeight: "37px",
+          },
           h3: {
             fontWeight: Bold,
             fontSize: 32,
