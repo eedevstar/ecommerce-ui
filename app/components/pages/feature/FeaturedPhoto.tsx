@@ -1,15 +1,27 @@
 import { TPhoto } from "@/types";
 import { camelize, humanFileSize } from "@/utils";
 import { PhotosData } from "@/utils/dummyData";
-import { Container, Typography, Box, Grid, Button, Divider, ImageList, ImageListItem, Select, MenuItem, FormGroup, FormControlLabel, Checkbox, Card, CardMedia, CardContent } from "@mui/material";
+import { Typography, Box, Grid, Button } from "@mui/material";
 import Image from 'next/image';
 import { RecommendPhotos } from "./RecommendPhotos";
+import { CartContext } from "@/contexts/Cart";
+import React from "react";
 
 export const FeaturedPhoto = () => {
+  const carts = React.useContext(CartContext);
   const photo: TPhoto | undefined = PhotosData.find((photo: TPhoto) => photo.featured);
 
   if(typeof photo === undefined)
     return <></>;
+  
+  const handleAddCart = () => {
+    if(!isAlreadyInCart())
+      carts.addCart(photo.id);
+  }
+
+  const isAlreadyInCart = () => {
+    return carts.photos.includes(photo.id);
+  }
 
   return (
     <>
@@ -18,7 +30,7 @@ export const FeaturedPhoto = () => {
           <Typography variant="h3">{photo?.name}</Typography>
         </Grid>
         <Grid item sm={4} textAlign="right" sx={{display:{sm: "block", xs: "none"}}}>
-          <Button variant="contained">ADD TO CART</Button>
+          <Button variant="contained" onClick={()=>handleAddCart()}>{isAlreadyInCart() ? "ADDED" : "ADD TO CART"}</Button>
         </Grid>
       </Grid>
       <Box width={"100%"} height={{sm: 533, xs: 239}} position="relative" mt={3.5} mb={{sm: 5.5, xs: 0}}>
@@ -28,7 +40,7 @@ export const FeaturedPhoto = () => {
         </Box>
       </Box>
       <Box sx={{display:{sm: "none", xs: "block"}}} my={3.8}>
-        <Button variant="contained" fullWidth>ADD TO CART</Button>
+        <Button variant="contained" fullWidth onClick={()=>handleAddCart()}>{isAlreadyInCart() ? "ADDED" : "ADD TO CART"}</Button>
       </Box>
       <Grid container>
         <Grid item sm={6} xs={12}>

@@ -1,23 +1,42 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Toolbar from "@mui/material/Toolbar";
-import { CartIcon, MarkIcon, CloseIcon } from "../../Icons";
-import { Box, Badge, Container, Divider, Grid, Paper, Typography, useTheme, alpha, Button } from "@mui/material";
+import { CartIcon, CloseIcon } from "../../Icons";
+import { Box, Badge, Divider, Typography, useTheme, alpha, Button } from "@mui/material";
 import Image from "next/image";
+import { CartContext } from "@/contexts/Cart";
+import { PhotosData } from "@/utils/dummyData";
 
 export const ShoppingCart = () => {
+  const carts = React.useContext(CartContext);
   const [open, setOpen] = React.useState<boolean>(false);
-  const theme = useTheme()
+  const theme = useTheme();
+
+  React.useEffect(() => {
+    if(carts.photos.length !== 0) {
+      setOpen(true);
+      //window.scrollTo();
+    }
+  }, [carts.photos]);
 
   const handleClear = () => {
+    carts.clearCart();
     setOpen(false);
+  }
+
+  const cartsBadge = () => {
+    if(carts.photos.length === 0)
+      return null;
+    else
+      return <Typography variant="subtitle1" fontWeight={700}>{carts.photos.length}</Typography>;
+  }
+
+  const photosData = () => {
+    return PhotosData.filter((photo) => carts.photos.includes(photo.id));
   }
 
   return (
     <>
       <Badge
-        badgeContent={<Typography variant="subtitle1" fontWeight={700}>1</Typography>}
+        badgeContent={cartsBadge()}
         color="primary"
         anchorOrigin={{
           vertical: 'bottom',
@@ -37,15 +56,24 @@ export const ShoppingCart = () => {
               <CloseIcon />
             </Box>
             <Box display="flex" flexDirection={"column"} gap={1}>
-              <Box display="flex" alignItems={"center"} gap={2}>
-                <Box sx={{flexGrow: 1}}>
-                  <Typography variant="subtitle1" fontWeight={700} mb={1} align="left">Samurai King Resting</Typography>
-                  <Typography variant="h4" color="text.secondary"  align="left" fontWeight={400}>#656565</Typography>
-                </Box>
-                <Box width={150} height={86} position="relative">
-                  <Image src="/img/photo_of_day.png" alt="Photo of the day" layout="fill" />
-                </Box>
-              </Box>
+              {
+                photosData().map((photo, idx) => (
+                  <Box key={photo.id} display="flex" alignItems={"center"} gap={2}>
+                    <Box sx={{flexGrow: 1}}>
+                      <Typography variant="subtitle1" fontWeight={700} mb={1} align="left">{photo.name}</Typography>
+                      <Typography variant="h4" color="text.secondary"  align="left" fontWeight={400}>{`$${photo.price}`}</Typography>
+                    </Box>
+                    <Box width={150} height={86} position="relative">
+                      <Image src={photo.image.src} alt="Photo of the day" layout="fill" />
+                    </Box>
+                  </Box>
+                ))
+              }
+              {
+                carts.photos.length === 0 && (
+                  <Typography variant="body1" color="text.secondary" align="center">No Photo in the cart</Typography>
+                )
+              }
             </Box>
             <Divider sx={{margin: "24px 0"}} />
             <Button variant="outlined" fullWidth onClick={()=>handleClear()}>CLEAR</Button>

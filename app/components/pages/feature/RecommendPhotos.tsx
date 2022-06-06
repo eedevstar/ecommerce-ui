@@ -1,5 +1,5 @@
 import { TImage } from "@/types";
-import { Container, Typography, Box, Grid, Button, Divider, ImageList, ImageListItem, Select, MenuItem, FormGroup, FormControlLabel, Checkbox, Card, CardMedia, CardContent } from "@mui/material";
+import { Box } from "@mui/material";
 import Image from 'next/image';
 
 type RecommendPhotosProps = {

@@ -1,13 +1,6 @@
-import type { NextPage } from "next";
-import { Container, Typography, Box, Grid, Button, Divider, ImageList, ImageListItem, Select, MenuItem, FormGroup, FormControlLabel, Checkbox, Card, CardMedia, CardContent } from "@mui/material";
-import Default from "@/components/Templates/Default";
-import Image from 'next/image';
+import { Typography, Box, Select, MenuItem } from "@mui/material";
 import { SortByIcon } from "@/components/Icons";
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import { useState } from "react";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { FeaturedPhoto } from "@/components/pages/feature";
 
 type PhotosSortProps = {
   sortType: (val: string) => void;

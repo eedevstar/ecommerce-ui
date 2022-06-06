@@ -1,17 +1,7 @@
-import type { NextPage } from "next";
-import { Container, Typography, Box, Grid, Button, Divider, ImageList, ImageListItem, Select, MenuItem, FormGroup, FormControlLabel, Checkbox, Card, CardMedia, CardContent } from "@mui/material";
-import Default from "@/components/Templates/Default";
-import Image from 'next/image';
+import { Typography, Box, Grid, Button, Divider, FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 import { CloseIcon, FilterIcon, SortByIcon } from "@/components/Icons";
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
-import { useEffect, useState } from "react";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { FeaturedPhoto } from "@/components/pages/feature";
-import { PhotosSort } from "./PhotosSort";
-import { PhotosFilter } from "./PhotosFilter";
-import { Photo } from "./Photo";
-import { TPhoto } from "@/types";
+import { useState } from "react";
 import { PhotosFilterCategories, PhotosFilterPriceRanges } from "@/utils";
 
 type PhotosMobileFilterProps = {

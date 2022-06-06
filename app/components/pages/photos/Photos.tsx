@@ -1,11 +1,6 @@
-import type { NextPage } from "next";
-import { Container, Typography, Box, Grid, Button, Divider, ImageList, ImageListItem, Select, MenuItem, FormGroup, FormControlLabel, Checkbox, Card, CardMedia, CardContent } from "@mui/material";
-import Default from "@/components/Templates/Default";
-import Image from 'next/image';
+import { Typography, Box, Grid } from "@mui/material";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/Icons";
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import { useState } from "react";
-import { FeaturedPhoto } from "@/components/pages/feature";
 import { PhotosSort } from "./PhotosSort";
 import { PhotosFilter } from "./PhotosFilter";
 import { Photo } from "./Photo";
@@ -95,7 +90,7 @@ export const Photos = () => {
         }
         {
           data().length === 0 && (
-            <Typography variant="body1" color="text.secondary">No Photo Data. Filter again.</Typography>
+            <Typography variant="body1" color="text.secondary">No Photo. Filter again.</Typography>
           )
         }
       </>

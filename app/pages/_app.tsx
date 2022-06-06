@@ -7,6 +7,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "@/styles/createEmotionCache";
 import { createTheme } from "@/styles/theme";
 import { ColorModeContext } from "@/contexts/ColorMode";
+import { CartContext } from "@/contexts/Cart";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -26,8 +27,19 @@ export default function MyApp(props: MyAppProps) {
     }),
     []
   );
-
   const theme = React.useMemo(() => createTheme(mode), [mode]);
+
+  const [carts, setCarts] = React.useState<number[]>([]);
+  const cartsData = {
+    photos: carts,
+    addCart: (val: number) => {
+      if(!carts.includes(val))
+        setCarts([...carts, val]);
+    },
+    clearCart: () => {
+      setCarts([]);
+    }
+  };
 
   return (
     <CacheProvider value={emotionCache}>
@@ -35,11 +47,13 @@ export default function MyApp(props: MyAppProps) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
+        <CartContext.Provider value={cartsData}>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </CartContext.Provider>
       </ColorModeContext.Provider>
     </CacheProvider>
   );

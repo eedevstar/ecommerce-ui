@@ -2,9 +2,8 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
-import { CartIcon, MarkIcon, CloseIcon } from "../Icons";
-import { Box, Badge, Container, Divider, Grid, Paper, Typography, useTheme, alpha, Button } from "@mui/material";
-import Image from "next/image";
+import { MarkIcon } from "../Icons";
+import { Box, Container, Divider, Grid } from "@mui/material";
 import { ShoppingCart } from "../pages/photos/ShoppingCart";
 import { ShoppingCartMobile } from "../pages/photos/ShoppingCartMobile";
 

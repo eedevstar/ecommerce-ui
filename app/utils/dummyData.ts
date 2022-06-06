@@ -2,6 +2,7 @@ import { TPhoto } from "@/types";
 
 export const PhotosData: TPhoto[] = [
   {
+    id: 1,
     name: "Red Bench",
     category: "people",
     price: 3.89,
@@ -15,6 +16,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 2,
     name: "Egg Balloon",
     category: "food",
     price: 93.89,
@@ -28,6 +30,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 3,
     name: "Man",
     category: "people",
     price: 100,
@@ -41,6 +44,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 4,
     name: "Architecture",
     category: "landmarks",
     price: 101,
@@ -58,6 +62,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 5,
     name: "Lion",
     category: "pets",
     price: 20,
@@ -75,6 +80,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 6,
     name: "Chess",
     category: "pets",
     price: 20,
@@ -92,6 +98,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 7,
     name: "Nature 1",
     category: "nature",
     price: 20,
@@ -109,6 +116,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 8,
     name: "Nature 2",
     category: "nature",
     price: 20,
@@ -126,6 +134,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 9,
     name: "Nature 3",
     category: "nature",
     price: 20,
@@ -143,6 +152,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 10,
     name: "Nature 4",
     category: "nature",
     price: 20,
@@ -160,6 +170,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 11,
     name: "Nature 5",
     category: "nature",
     price: 20,
@@ -177,6 +188,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 12,
     name: "Nature 6",
     category: "nature",
     price: 20,
@@ -194,6 +206,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 13,
     name: "Nature 7",
     category: "nature",
     price: 20,
@@ -211,6 +224,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 14,
     name: "Nature 8",
     category: "nature",
     price: 20,
@@ -228,6 +242,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 15,
     name: "Nature 9",
     category: "nature",
     price: 20,
@@ -245,6 +260,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 16,
     name: "Nature 10",
     category: "nature",
     price: 20,
@@ -262,6 +278,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 17,
     name: "Nature 11",
     category: "nature",
     price: 20,
@@ -279,6 +296,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 18,
     name: "Nature 12",
     category: "nature",
     price: 20,
@@ -296,6 +314,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 19,
     name: "Nature 13",
     category: "nature",
     price: 20,
@@ -313,6 +332,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 20,
     name: "Nature 14",
     category: "nature",
     price: 20,
@@ -330,6 +350,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 21,
     name: "Nature 15",
     category: "nature",
     price: 20,
@@ -347,6 +368,7 @@ export const PhotosData: TPhoto[] = [
     details: null,
   },
   {
+    id: 22,
     name: "Samurai King Restling",
     category: "pets",
     price: 101,
