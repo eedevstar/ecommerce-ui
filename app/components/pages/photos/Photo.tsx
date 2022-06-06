@@ -12,6 +12,7 @@ import { PhotosSort } from "./PhotosSort";
 import { PhotosFilter } from "./PhotosFilter";
 import { TPhoto } from "@/types";
 import { camelize } from "@/utils";
+import { useStore } from "@/stores/root";
 
 type PhotoProps = {
   photo: TPhoto;

@@ -44,7 +44,7 @@ export const Photos = () => {
             if(a.name < b.name) { return sortOrder === 0 ? -1 : 1; }
             if(a.name > b.name) { return sortOrder === 0 ? 1 : -1; }
             return 0;
-          })
+          });
           break;
         case "price":
           arr = arr.sort((a: any, b: any) => sortOrder === 0 ? a.price - b.price : b.price - a.price);
@@ -103,6 +103,7 @@ export const Photos = () => {
   }
 
   const handleFilterCategories = (categories: string[]) => {
+    console.log(categories);
     setCategories(categories);
     setCurPage(0);
   }
@@ -137,7 +138,7 @@ export const Photos = () => {
           <Typography variant="body1" color="text.secondary">Premium Photos</Typography>
         </Box>
         <Box display={{sm: "none", xs: "flex"}}>
-          <PhotosMobileFilter />
+          <PhotosMobileFilter filterCategories={handleFilterCategories} filterRanges={handleFilterRanges} />
         </Box>
       </Box>
       <Grid container mt={6}>

@@ -352,7 +352,7 @@ export const PhotosData: TPhoto[] = [
     price: 101,
     currency: "USD",
     image: {
-      src: "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg",
+      src: "https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg",
       alt: "Samurai King Restling",
     },
     bestseller: false,

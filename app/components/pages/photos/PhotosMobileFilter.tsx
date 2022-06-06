@@ -14,32 +14,60 @@ import { Photo } from "./Photo";
 import { TPhoto } from "@/types";
 import { PhotosFilterCategories, PhotosFilterPriceRanges } from "@/utils";
 
-export const PhotosMobileFilter = () => {
+type PhotosMobileFilterProps = {
+  filterCategories: (categories: string[])=>void;
+  filterRanges: (ranges: string[])=>void;
+}
+
+export const PhotosMobileFilter = ({filterCategories, filterRanges}: PhotosMobileFilterProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [ticks, setTicks] = useState({});
-  // const [ticks, setTicks] = useState(()=> {
-  //   let result = {};
-  //   PhotosFilterCategories.forEach((item) => {
-  //     result = {...result, [item.value]: false};
-  //   });
-  //   PhotosFilterPriceRanges.forEach((item) => {
-  //     result = {...result, [item.value]: false};
-  //   });
-  //   return result;
-  // });
+  const [savedTicks, setSavedTicks] = useState({});
 
   const handleChange = (key: string, value: boolean) => {
-    setTicks({...ticks, [key]: value});
+    const val = {...ticks, [key]: value};
+    setTicks(val);
   }
 
   const handleClear = () => {
     setTicks({});
+  }
+
+  const handleSave = () => {
+    setSavedTicks({...ticks});
     setOpen(false);
+    console.log(ticks);
+    let categories = [];
+    let ranges = [];
+
+    for(let key in ticks) {
+      if (ticks.hasOwnProperty(key) && ticks[key] === true) {
+        const range_val = parseInt(key);
+        if(isNaN(range_val)) {
+          categories.push(key);
+        } else {
+          ranges.push(key);
+        }
+      }
+    }
+
+    filterCategories(categories);
+    filterRanges(ranges);
+  }
+
+  const handleClose = () => {
+    setTicks({});
+    setOpen(false);
+  }
+
+  const handleOpenMobileFilter = () => {
+    setTicks({...savedTicks});
+    setOpen(true);
   }
 
   return (
     <>
-      <Box onClick={()=>setOpen(true)}>
+      <Box onClick={()=>handleOpenMobileFilter()}>
         <FilterIcon />
       </Box>
       {
@@ -52,7 +80,7 @@ export const PhotosMobileFilter = () => {
                   PhotosFilterCategories.map((item, idx) => (
                     <FormControlLabel 
                       key={idx} 
-                      control={<Checkbox checked={ticks[item.value as string]} onChange={(e) => handleChange(item.value, e.target.checked)} style={{transform: "scale(1.5)"}} 
+                      control={<Checkbox checked={ticks[item.value] ?? false} onChange={(e) => handleChange(item.value, e.target.checked)} style={{transform: "scale(1.5)"}} 
                       checkedIcon={<CheckBoxOutlinedIcon />} />} 
                       sx={{marginBottom: "32px"}} 
                       label={<Typography variant="h4" fontWeight={400}>
@@ -68,7 +96,7 @@ export const PhotosMobileFilter = () => {
                   PhotosFilterPriceRanges.map((item, idx) => (
                     <FormControlLabel 
                       key={idx} 
-                      control={<Checkbox style={{transform: "scale(1.5)"}} 
+                      control={<Checkbox checked={ticks[item.value] ?? false} onChange={(e) => handleChange(item.value, e.target.checked)} style={{transform: "scale(1.5)"}} 
                       checkedIcon={<CheckBoxOutlinedIcon />} />} 
                       sx={{marginBottom: "32px"}} 
                       label={<Typography variant="h4" fontWeight={400}>
@@ -84,11 +112,11 @@ export const PhotosMobileFilter = () => {
                   <Button variant="outlined" fullWidth onClick={()=>handleClear()}>CLEAR</Button>
                 </Grid>
                 <Grid item xs={6}>
-                  <Button variant="contained" fullWidth>SAVE</Button>
+                  <Button variant="contained" fullWidth onClick={()=>handleSave()}>SAVE</Button>
                 </Grid>
               </Grid>
             </Box>
-            <Box position="absolute" right={28} top ={22} sx={{cursor: "pointer"}} onClick={()=>setOpen(false)}>
+            <Box position="absolute" right={28} top ={22} sx={{cursor: "pointer"}} onClick={()=>handleClose()}>
               <CloseIcon />
             </Box>
           </Box>
