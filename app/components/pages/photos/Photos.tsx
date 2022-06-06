@@ -17,12 +17,15 @@ export const Photos = () => {
   const [sortType, setSortType] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<number>(2);
 
+  // Filter Data with category, price range and sort by name or price.
   const data = (): TPhoto[] => {
     let arr = PhotosData.filter((photo: TPhoto) => !photo.featured);
     
+    // category filter
     if(categories.length > 0)
       arr = arr.filter((photo: TPhoto) => categories.includes(photo.category));
 
+    // price range filter
     if(ranges.length > 0) {
       arr = arr.filter((photo: TPhoto) => {
         return ranges.some((index: string) => {
@@ -32,6 +35,7 @@ export const Photos = () => {
       });
     }
 
+    // sort by name or price
     if(sortType !== "") {
       switch(sortType) {
         case "name":
@@ -52,13 +56,17 @@ export const Photos = () => {
     return arr;
   }
 
+  // get page photos
   const photos = (): TPhoto[] => {
     return data().splice(curPage * pagePhotoCount, 6);
   }
+
+  // total page count
   const totalPages = (): number => {
     return Math.ceil(data().length / pagePhotoCount);
   }
 
+  // generate photos pager
   const generatePager = () => {
     return (
       <>
@@ -97,18 +105,19 @@ export const Photos = () => {
     )
   }
 
+  // category filter handler
   const handleFilterCategories = (categories: string[]) => {
-    console.log(categories);
     setCategories(categories);
     setCurPage(0);
   }
 
+  // range filter handdler
   const handleFilterRanges = (ranges: string[]) => {
-    console.log(ranges);
     setRanges(ranges);
     setCurPage(0);
   }
 
+  // sort handler
   const handleSortType = (value: string) => {
     setSortType(value);
   }

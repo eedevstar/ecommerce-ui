@@ -11,11 +11,13 @@ export const ShoppingCartMobile = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const theme = useTheme();
 
+  // cart clear handler
   const handleClear = () => {
     carts.clearCart();
     setOpen(false);
   }
 
+  // generate cart badge element
   const cartsBadge = () => {
     if(carts.photos.length === 0)
       return null;
@@ -23,6 +25,7 @@ export const ShoppingCartMobile = () => {
       return <Typography variant="subtitle1" fontWeight={700}>{carts.photos.length}</Typography>;
   }
 
+  // photos in the cart
   const photosData = () => {
     return PhotosData.filter((photo) => carts.photos.includes(photo.id));
   }

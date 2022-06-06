@@ -19,10 +19,12 @@ export const PhotosMobileFilter = ({filterCategories, filterRanges}: PhotosMobil
     setTicks(val);
   }
 
+  // clear filters
   const handleClear = () => {
     setTicks({});
   }
 
+  // save filter handler
   const handleSave = () => {
     setSavedTicks({...ticks});
     setOpen(false);
@@ -45,6 +47,7 @@ export const PhotosMobileFilter = ({filterCategories, filterRanges}: PhotosMobil
     filterRanges(ranges);
   }
 
+  // close filter panel
   const handleClose = () => {
     setTicks({});
     setOpen(false);

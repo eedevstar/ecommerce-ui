@@ -14,6 +14,7 @@ export const FeaturedPhoto = () => {
   if(typeof photo === undefined)
     return <></>;
   
+  // checking featured photo in the cart
   const handleAddCart = () => {
     if(!isAlreadyInCart())
       carts.addCart(photo.id);

@@ -12,6 +12,7 @@ export const PhotosFilter = ({filterCategories, filterRanges}: PhotosFilterProps
   const [categories, setCategories] = useState<string[]>([]);
   const [ranges, setRanges] = useState<string[]>([]);
 
+  // filter update handler
   const handleFilterChange = (isCategory: boolean, key: string, value: boolean) => {
     let arr: string[] = isCategory ? [...categories] : [...ranges];
     
